@@ -1,99 +1,79 @@
 const { assert, expect } = require('chai');
-
-// const CompleteMe = require('../lib/completeMe.js');
-import CompleteMe from '../lib/completeMe.js'
+const CompleteMe = require('../lib/completeMe.js');
 const Branch = require('../lib/branch');
 
-// const App = require('../lib/app.js');
-let completion;
 const text = "/usr/share/dict/words"
 const fs = require('fs')
 const dictionary = fs.readFileSync(text).toString().trim().split('\n')
+let completion;
 
 
-describe('completeMe', () => {
+describe('CompleteMe', () => {
 
-  beforeEach( () => {
-    completion = new CompleteMe;
+  beforeEach ( () => {
+    completion = new CompleteMe
   })
 
-  it('should be an object', () => {
+  it('should be a object', () => {
+
     assert.isObject(completion);
+  });
+
+  it('should instantiate a new branch', () => {
+    let branch = new Branch();
+
   })
 
   it('should have a root node defaulted to null', () => {
     expect(completion.root).to.equal(null);
   });
 
+  it('should have insert function', () => {
+    let branch = new Branch()
+
+    expect(completion.insert).to.be.a('function');
+  })
+
+  it.only('should have a suggest function', () => {
+    expect(completion.suggest).to.be.a('function');
+
+    completion.insert('string')
+
+    // expect(completion.children.s.children.t.children.r.children.i)
+    completion.insert('stringy')
+    completion.insert('strap')
+    completion.insert('star')
+    completion.insert('star')
+    completion.insert('steel')
+    completion.insert('stop')
+    completion.insert('street')
+    completion.insert('stratus')
+
+    completion.suggest('st')
+  })
+
+  it('should have count function', () => {
+    expect(completion.count).to.be.a('function');
+  })
+
   it('should increment the counter when a word is completed', () => {
     let num = 'onethough'
     let num2 = 'twothough'
 
-    console.log(completion.wordCount)
+    // console.log(completion.wordCount)
     completion.insert(num)
-    console.log(completion.wordCount);
+    // console.log(completion.wordCount);
     completion.insert(num2)
-    console.log(completion.wordCount);
+    // console.log(completion.wordCount);
   })
 
-  it('should have a suggest function', () => {
-    
+  it('should have a populate function', (done) => {
 
-  })
+    completion.populate(dictionary);
 
-})
+    expect(completion.wordCount).to.equal(235886);
+    // console.log(completion.words);
+    done()
+  }).timeout(40000)
 
-
-// describe('CompleteMe', () => {
-//
-//   beforeEach ( () => {
-//     completion = new CompleteMe
-//   })
-//
-//   it('should be a object', () => {
-//
-//     assert.isObject(completion);
-//   });
-//
-//   it('should instantiate a new branch', () => {
-//     let branch = new Branch();
-//
-//   })
-//
-//   it('should have insert function', () => {
-//     should have a function that will insert a new word as a string
-//     let branch = new Branch()
-//
-//     expect(completion.insert).to.be.a('function');
-//
-//     completion.populate(['apply', 'apple', 'bananas', 'cat', 'frog']);
-//     completion.insert('anyword');
-//     completion.populate(dictionary);
-//
-//     expect(completion.words.length).to.equal(235886);
-//     expect(completion.words[0]).to.equal(dictionary)
-//   })
-//
-//   it('should have count function', () => {
-//     should have a function that will keep count of what we are doing
-//     expect(completion.count).to.be.a('function');
-//   })
-//
-// });
-//
-//
-// describe('suggestAWord', () => {
-//
-//   beforeEach ( () => {
-//     completion = new CompleteMe
-//   })
-//
-//   it('should be a function', () => {
-//     completion.insert('string')
-//     completion.insert('strap')
-//     completion.suggestAWord('str')
-//     // assert.isFunction(suggestAWord);
-//   });
-//
-//
-// })
+});
