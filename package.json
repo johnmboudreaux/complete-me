@@ -1,7 +1,7 @@
 {
-  "name": "TDD",
+  "name": "JmCompleteMe",
   "version": "1.0.0",
-  "description": "",
+  "description": "trie builder with predictive",
   "main": "index.js",
   "directories": {
     "test": "tests"
@@ -10,7 +10,7 @@
     "test": "mocha --compilers js:babel-core/register tests"
   },
   "keywords": [],
-  "author": "",
+  "author": "john michael",
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.22.2",
