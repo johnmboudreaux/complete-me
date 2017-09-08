@@ -156,7 +156,7 @@ describe('select', () => {
     completion.select("stopped")
     completion.select("stopped")
     completion.select("stopping")
-    assert.deepEqual(completion.suggest('st'), ['stop', 'stopped', 'stopping', 'stoop'] ||  [])
+    assert.deepEqual(completion.suggest('st'), ['stop', 'stopped', 'stopping', 'stoop'])
   });
 
 });
