@@ -34,6 +34,16 @@ describe('CompleteMe', () => {
     expect(completion.insert).to.be.a('function');
   })
 
+  it('insert should increment the counter when a word is completed', () => {
+    let num = 'onethough'
+    let num2 = 'twothough'
+
+    completion.insert(num)
+    completion.insert(num2)
+
+    expect(completion.wordCount).to.equal(2)
+  })
+
   it('should have a suggest function', () => {
 
     expect(completion.suggest).to.be.a('function');
@@ -58,7 +68,6 @@ describe('CompleteMe', () => {
     // expect(completion.suggest).to.equal(testArray)
   })
 
-
   it('should have select function', () => {
     expect(completion.select).to.be.a('function');
   })
@@ -72,17 +81,6 @@ describe('CompleteMe', () => {
     completion.select('stop')
 
     expect(completion.root.child.s.child.t.child.o.child.p.frequency).to.equal(3)
-  })
-
-  it('count should increment the counter when a word is completed', () => {
-    let num = 'onethough'
-    let num2 = 'twothough'
-
-    // console.log(completion.wordCount)
-    completion.insert(num)
-    // console.log(completion.wordCount);
-    completion.insert(num2)
-    // console.log(completion.wordCount);
   })
 
   it('should have a populate function', (done) => {
