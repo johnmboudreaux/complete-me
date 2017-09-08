@@ -19,5 +19,9 @@ describe('Branch', () => {
     assert.isFalse(branch.isWord, false)
   })
 
+  it('should have a child', () => {
+    
+  })
+
 
 })
