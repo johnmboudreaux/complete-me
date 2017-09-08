@@ -5,7 +5,7 @@
     "es6": true,
     "mocha": true
   },
-  # "extends": "eslint:recommended",
+  "extends": "eslint:recommended",
   "parserOptions": {
     "sourceType": "module"
   },
@@ -47,7 +47,7 @@
     ],
     "max-len": [
       "error",
-      80
+      120
     ],
     "new-cap": [
       "error", {

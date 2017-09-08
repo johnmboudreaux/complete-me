@@ -1,6 +1,5 @@
 const { assert, expect } = require('chai');
 const CompleteMe = require('../lib/completeMe.js');
-const Branch = require('../lib/branch');
 
 const text = "/usr/share/dict/words"
 const fs = require('fs')
@@ -11,7 +10,7 @@ let completion;
 describe('CompleteMe', () => {
 
   beforeEach ( () => {
-    completion = new CompleteMe
+    completion = new CompleteMe;
   })
 
   it('should be a object', () => {
@@ -20,7 +19,6 @@ describe('CompleteMe', () => {
   });
 
   it('should instantiate a new branch', () => {
-    let branch = new Branch();
 
   })
 
@@ -29,29 +27,33 @@ describe('CompleteMe', () => {
   });
 
   it('should have insert function', () => {
-    let branch = new Branch()
 
     expect(completion.insert).to.be.a('function');
+  });
+
+  it('insert should assign a root node/branch', () => {
+    expect(completion.root).to.equal(null);
+    completion.insert('word');
+    expect(completion.root).not.to.equal(null);
   })
 
   it('insert should increment the counter when a word is completed', () => {
-    let num = 'onethough'
-    let num2 = 'twothough'
+    let num = 'onethough';
+    let num2 = 'twothough';
 
-    completion.insert(num)
-    completion.insert(num2)
+    completion.insert(num);
+    completion.insert(num2);
 
-    expect(completion.wordCount).to.equal(2)
-  })
+    expect(completion.wordCount).to.equal(2);
+  });
 
   it('should have a suggest function', () => {
 
     expect(completion.suggest).to.be.a('function');
-  })
+  });
 
   it('suggest should return an array of words starting with st', () => {
     completion.insert('string')
-    // expect(completion.child.s.child.t.child.r.child.i.child.n.child.g).to.equal('string')
     completion.insert('stringy')
     completion.insert('strap')
     completion.insert('star')
@@ -64,8 +66,6 @@ describe('CompleteMe', () => {
     let testArray = [ 'string', 'stringy', 'strap', 'stratus', 'street', 'star', 'steel', 'stop' ]
 
     assert.deepEqual(completion.suggest('st'), testArray)
-
-    // expect(completion.suggest).to.equal(testArray)
   })
 
   it('should have select function', () => {
