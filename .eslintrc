@@ -47,7 +47,7 @@
     ],
     "max-len": [
       "error",
-      120
+      130
     ],
     "new-cap": [
       "error", {
