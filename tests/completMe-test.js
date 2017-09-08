@@ -79,7 +79,7 @@ describe('insert', () => {
 
     expect(completion.wordCount).to.equal(2);
   });
-  
+
 })
 
 describe('suggest', () => {
@@ -110,10 +110,16 @@ describe('suggest', () => {
     assert.deepEqual(completion.suggest('st'), testArray)
   })
 
-  it('should return word as lower case to recuce duplicates', () => {
+  it('should return word as lower case to reduce duplicates', () => {
     completion.insert('Star')
     completion.insert('stars')
     assert.deepEqual(completion.suggest('star'), ['star', 'stars']);
+  });
+
+  it('should take an capital letter in the partial string and return suggestions as lowercase', () => {
+    completion.insert('star')
+    completion.insert('stars')
+    assert.deepEqual(completion.suggest('Star'), ['star', 'stars']);
   });
 
 });
